@@ -10,7 +10,7 @@ class AppTheme {
             primary: AppColors.primary,
             onPrimary: AppColors.surface,
             secondary: AppColors.secondary,
-            onSecondary: AppColors.surface,
+            //onSecondary: AppColors.surface,
             error: AppColors.red,
             onError: AppColors.surface,
             onSurfaceVariant: AppColors.onSurface,
