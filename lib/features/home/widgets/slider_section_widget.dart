@@ -32,7 +32,15 @@ class SliderSectionWidget extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          Slider(value: value, onChanged: onChanged,max: maxValue,min: minValue,label: value.toStringAsFixed(0),),
+          Slider(value: value, onChanged: onChanged,max: maxValue,min: minValue,label: value.toStringAsFixed(0),activeColor: Theme.of(context).colorScheme.primary,
+          inactiveColor:Theme.of(context).colorScheme.onSurface ,),
+          SizedBox(
+            height: 12,
+          ),
+          Text('Value : ${value.toInt()}',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),),
+
 
         ],
       ),
