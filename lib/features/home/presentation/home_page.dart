@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:guesstoget/features/game/presentation/page/game_page.dart';
 import 'package:guesstoget/features/home/widgets/slider_section_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -79,7 +81,11 @@ class _HomePageState extends State<HomePage> {
             Spacer(),
             SizedBox(
               width: double.maxFinite,
-              child: ElevatedButton(onPressed: () {},style: ElevatedButton.styleFrom(
+              child: ElevatedButton(onPressed: ( ) {
+                context.push(
+                  GamePage.route(attemptsCount: attemptCount.toInt(), wordLength: wordLength.toInt())
+                );
+              },style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 18),
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 foregroundColor: Theme.of(context).colorScheme.onSurface,
