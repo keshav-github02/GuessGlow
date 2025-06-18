@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:guesstoget/features/game/presentation/bloc/game_bloc.dart';
+import 'package:guesstoget/features/game/presentation/widgets/attempts_widget.dart';
+
+import '../../../../core/get_it/get_it.dart';
 
 class GamePage extends StatelessWidget {
   final int attemptsCount;
@@ -14,7 +19,9 @@ class GamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider(
+  create: (context) => getIt<GameBloc>(),
+  child: Scaffold(
       appBar: AppBar(
         title: Text('Game',style: Theme.of(context).textTheme.headlineMedium,),
       ) ,
@@ -22,9 +29,12 @@ class GamePage extends StatelessWidget {
         children: [
           SizedBox(
             height: 20,
+
           ),
+          AttemptsWidget(),
         ],
       ),
-    );
+    ),
+);
   }
 }

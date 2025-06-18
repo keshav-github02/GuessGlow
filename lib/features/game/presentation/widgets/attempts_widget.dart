@@ -12,11 +12,16 @@ class AttemptsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GameBloc, GameState>(
       builder: (context, state) {
-        return ListView.separated(itemBuilder: (context, index) {
-          AttemptRowWidget(attemptIndex: index);
-        }, separatorBuilder: (context, index) {
-          return SizedBox(height: 10,);
-        }, itemCount: 10);
+        return Center(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * .9,
+            child: ListView.separated(itemBuilder: (context, index) {
+             return  AttemptRowWidget(attemptIndex: index);
+            }, separatorBuilder: (context, index) {
+              return SizedBox(height: 10,);
+            }, itemCount: state.attemptsCount ?? 0 ,shrinkWrap: true,),
+          ),
+        );
       },
     );
   }

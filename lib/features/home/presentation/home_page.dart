@@ -18,9 +18,7 @@ class _HomePageState extends State<HomePage> {
   double attemptCount = 5;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-  create: (context) => getIt<GameBloc>(),
-  child: Scaffold(
+    return  Scaffold(
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -103,7 +101,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       )),
-    ),
-);
+    );
   }
 }
