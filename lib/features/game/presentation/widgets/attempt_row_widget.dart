@@ -42,4 +42,27 @@ class AttemptRowWidget extends StatelessWidget {
     }
     return ' ';
   }
+
+
+  Color? _getBoxColor(BuildContext context,
+      String letter,
+      String word,
+      int attemptIndex,
+      int letterIndex,
+      List<String> previousAttempts,
+      bool isCurrentAttempt) {
+    if (attemptIndex >= previousAttempts.length ||
+        letter.isEmpty ||
+        isCurrentAttempt) {
+      return null;
+    } else if (word[letterIndex] == letter) {
+      return AppColors.green;
+    } else if (word.contains(letter)) {
+      return AppColors.yellow;
+    }
+    return Theme
+        .of(context)
+        .colorScheme
+        .onSurfaceVariant;
+  }
 }
