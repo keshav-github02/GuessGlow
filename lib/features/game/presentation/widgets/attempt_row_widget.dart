@@ -47,6 +47,7 @@ class AttemptRowWidget extends StatelessWidget {
   Color? _getBoxColor(BuildContext context,
       String letter,
       // String word,
+      String word,
       int attemptIndex,
       int letterIndex,
       List<String> previousAttempts,
