@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guesstoget/features/game/presentation/bloc/game_event.dart';
 import 'package:guesstoget/features/game/presentation/bloc/game_state.dart';
 
+import '../../domain/game_repository.dart';
+
 
 
 class GameBloc extends Bloc<GameEvent, GameState> {

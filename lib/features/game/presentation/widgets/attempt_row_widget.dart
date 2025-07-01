@@ -6,8 +6,10 @@ import 'package:guesstoget/features/game/presentation/widgets/letter_box_widget.
 import '../bloc/game_bloc.dart';
 import '../bloc/game_state.dart';
 
+
 class AttemptRowWidget extends StatelessWidget {
   final int attemptIndex;
+
   const AttemptRowWidget({super.key, required this.attemptIndex});
 
   @override
@@ -20,29 +22,49 @@ class AttemptRowWidget extends StatelessWidget {
         final isCurrentAttempt = attemptIndex == previousAttempts.length;
         return Row(
           children: List.generate(word.length, (letterIndex) {
-            var text=_getLetter(letterIndex, attemptIndex, previousAttempts, currentAttempt, isCurrentAttempt);
+            var text = _getLetter(letterIndex, attemptIndex, previousAttempts,
+                currentAttempt, isCurrentAttempt);
+            var boxColor = _getBoxColor(
+                context,
+                text,
+                word,
+                attemptIndex,
+                letterIndex,
+                previousAttempts,
+                isCurrentAttempt);
+            var textColor = _getTextColor(
+                context,
+                text,
+                word,
+                attemptIndex,
+                letterIndex,
+                previousAttempts,
+                isCurrentAttempt);
             return Expanded(
                 child: LetterBoxWidget(
-              text: text,
-              boxColor: AppColors.green,
-              textColor: AppColors.surface,
-            ));
+                    text: text,
+                    boxColor: boxColor,
+                    textColor: textColor));
           }),
         );
       },
     );
   }
 
-  String _getLetter(int letterIndex, int attemptIndex, List<String> previousAttempts,String currentAttempt,bool isCurrentAttempt){
-    if(attemptIndex < previousAttempts.length){
+  String _getLetter(int letterIndex,
+      int attemptIndex,
+      List<String> previousAttempts,
+      String currentAttempt,
+      bool isCurrentAttempt) {
+    if (attemptIndex < previousAttempts.length) {
       return previousAttempts[attemptIndex][letterIndex];
+    } else if (isCurrentAttempt) {
+      return letterIndex < currentAttempt.length
+          ? currentAttempt[letterIndex]
+          : '';
     }
-    else if(isCurrentAttempt){
-      return letterIndex<currentAttempt.length ? currentAttempt[letterIndex]:' ';
-    }
-    return ' ';
+    return '';
   }
-
 
   Color? _getBoxColor(BuildContext context,
       String letter,
@@ -65,4 +87,33 @@ class AttemptRowWidget extends StatelessWidget {
         .colorScheme
         .onSurfaceVariant;
   }
+
+  Color? _getTextColor(BuildContext context,
+      String letter,
+      String word,
+      int attemptIndex,
+      int letterIndex,
+      List<String> previousAttempts,
+      bool isCurrentAttempt) {
+    if (attemptIndex >= previousAttempts.length ||
+        letter.isEmpty ||
+        isCurrentAttempt) {
+      Theme
+          .of(context)
+          .colorScheme
+          .onSurface;
+    }
+    else if (word[letterIndex] == letter || word.contains(letter)) {
+      return Theme
+          .of(context)
+          .colorScheme
+          .surface;
+    }
+    return Theme
+        .of(context)
+        .colorScheme
+        .onSurface;
+  }
+
+
 }
