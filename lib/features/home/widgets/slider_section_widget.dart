@@ -26,7 +26,7 @@ class SliderSectionWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [BoxShadow(
           color: Color.fromRGBO(0, 0, 0, 0.1),
-          blurRadius: 8,
+          blurRadius: 9,
           spreadRadius: 4,
         )]
       ),
